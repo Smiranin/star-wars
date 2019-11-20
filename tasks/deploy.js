@@ -32,6 +32,7 @@ module.exports = function (options) {
                 function (file, code, cb) {
                     shell.exec('find . | grep -v .git | grep -v .gitignore | grep -v node_modules | grep -v index.html | xargs rm -rf ');
                     shell.exec('git add --all && git commit -m "deploy" && git pull origin gh-pages && git push origin gh-pages');
+                    shell.exec('git checkout master && git -d gh-pages');
                     cb(null, file);
                 }
             ))
